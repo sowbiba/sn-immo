@@ -1,0 +1,2 @@
+INSERT INTO agence_immo.property_attributes (id, property_id, attribute_id, value, created_at, updated_at) VALUES (1, 15, 2, 'red', '2020-10-03 19:21:18', '2020-10-14 17:40:06');
+INSERT INTO agence_immo.property_attributes (id, property_id, attribute_id, value, created_at, updated_at) VALUES (2, 15, 1, '100', '2020-10-14 17:48:33', '2020-10-14 17:48:33');

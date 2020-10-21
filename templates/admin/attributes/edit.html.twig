@@ -1,0 +1,21 @@
+{% extends 'admin/base.html.twig' %}
+
+{% set active_menu = 'attributes' %}
+{% set container_class = 'container-sm' %}
+
+{% block title %}{{ 'Edit attribute'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('attributes') }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ 'Edit attribute'|trans }}</h1>
+    {% include 'admin/attributes/Blocks/form.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('attributes') }}
+{% endblock %}

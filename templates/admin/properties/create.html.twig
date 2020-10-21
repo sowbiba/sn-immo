@@ -1,0 +1,21 @@
+{% extends 'admin/base.html.twig' %}
+
+{% set active_menu = 'properties' %}
+{% set container_class = 'container-sm' %}
+
+{% block title %}{{ 'Create property'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('properties') }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ 'Create property'|trans }}</h1>
+    {% include 'admin/properties/Blocks/form.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('properties') }}
+{% endblock %}

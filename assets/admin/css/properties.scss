@@ -1,0 +1,23 @@
+.add_property_attribute_container {
+  max-width: 600px;
+}
+#add_attribute_selector {
+  width: 300px;
+}
+.add_property_attribute_link {
+  margin-bottom: 20px;
+  clear: both;
+}
+
+.property-attribute-container {
+  margin-top: 20px;
+
+  &.hovered {
+    background: #EEEEEE;
+    border-radius: 10px;
+  }
+}
+
+table.table-property-attribute tr td:first-child {
+  width: 30%;
+}

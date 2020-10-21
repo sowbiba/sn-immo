@@ -1,0 +1,31 @@
+{{ form_start(form) }}
+<table class="table table-responsive-xl table-borderless">
+    <tbody>
+    <tr>
+        <td class="col-form-label">
+            {{ form_label(form.name) }}
+            {{ form_errors(form.name) }}
+        </td>
+        <td>
+            {{ form_widget(form.name) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="col-form-label">
+            {{ form_label(form.type) }}
+            {{ form_errors(form.type) }}
+        </td>
+        <td>
+            {{ form_widget(form.type) }}
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="submit">
+            <a href="{{ path('attributes') }}" class="btn btn-light form-action-button">{{ 'Cancel'|trans }}</a>
+            <button type="submit" class="btn btn-primary form-action-button">{{ 'Submit'|trans }}</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+{{ form_end(form) }}

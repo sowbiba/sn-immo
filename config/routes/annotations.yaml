@@ -1,6 +1,7 @@
-controllers:
-    resource: ../../src/Controller/
+admin_controllers:
+    resource: ../../src/Controller/Admin/
     type: annotation
+    prefix: /admin
 
 kernel:
     resource: ../../src/Kernel.php

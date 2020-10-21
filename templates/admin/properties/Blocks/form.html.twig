@@ -1,0 +1,92 @@
+{% import 'admin/properties/macros/property.html.twig' as formMacros %}
+
+{{ form_start(form) }}
+<table class="table table-responsive-xl table-borderless">
+    <tbody>
+    <tr>
+        <td class="col-form-label">
+            {{ form_label(form.title) }}
+            {{ form_errors(form.title) }}
+        </td>
+        <td>
+            {{ form_widget(form.title) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="col-form-label">
+            {{ form_label(form.address) }}
+            {{ form_errors(form.address) }}
+        </td>
+        <td>
+            {{ form_widget(form.address) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="col-form-label">
+            {{ form_label(form.zipcode) }}
+            {{ form_errors(form.zipcode) }}
+        </td>
+        <td>
+            {{ form_widget(form.zipcode) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="col-form-label">
+            {{ form_label(form.city) }}
+            {{ form_errors(form.city) }}
+        </td>
+        <td>
+            {{ form_widget(form.city) }}
+        </td>
+    </tr>
+    <tr><td colspan="2"></td></tr>
+    <tr><td colspan="2"></td></tr>
+    <tr><td colspan="2" class="block-title">{{ 'Property attributes'|trans }}</td></tr>
+    <tr>
+        <td colspan="2">
+            <ul class="property-attributes"
+                data-prototype="{{ formMacros.printPropertyAttributeRow(form.propertyAttributes.vars.prototype)|e('html_attr') }}"
+                data-index="{{ form.propertyAttributes|length }}"
+            >
+                <li class="add_property_attribute_container">
+                    <div class="alert alert-danger add_property_attribute_alert alert-dismissible hide" role="alert">
+                        This is a danger alert—check it out!
+                    </div>
+                    <table class="table table-responsive-xl table-borderless">
+                        <tbody>
+                            <tr>
+                                <td><h5>{{ 'Add an attribute'|trans }}</h5></td>
+                                <td>
+                                    <select class="form-control" name="add_attribute_selector" id="add_attribute_selector">
+                                        {% for attribute in attributes %}
+                                            <option value="{{ attribute.id }}">{{ attribute.name|trans }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td>
+                                    <a class="add_property_attribute_link btn btn-success" title="Add an attribute" data-property-id="{% if property is defined %}{{ property.id }}{% endif %}">
+                                        <span class="oi oi-plus" aria-hidden="true"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                {% for propertyAttributeForm in form.propertyAttributes %}
+                    <li class="property-attribute-container" data-index="{{ loop.index0 }}">
+                        {{ formMacros.printPropertyAttributeRow(propertyAttributeForm) }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="submit">
+            <a href="{{ path('properties') }}" class="btn btn-light form-action-button">{{ 'Cancel'|trans }}</a>
+            <button type="submit" class="btn btn-primary form-action-button">{{ 'Submit'|trans }}</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+{{ form_end(form) }}

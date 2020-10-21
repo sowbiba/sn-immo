@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('admin_app') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+            <div class="container-fluid">
+                <div class="row">
+                    {% block container %}
+                        <div class="wrapper">
+                            <nav id="sidebar">
+                                <!-- Sidebar Header -->
+                                <div class="sidebar-header">
+                                    <a href=""><img src="{{ asset('build/images/puffin.jpg') }}" alt="" title="" /> </a>
+                                    <h3>{{ 'Administration'|trans }}</h3>
+                                </div>
+
+                                <!-- Sidebar Links -->
+                                <ul class="list-unstyled components">
+                                    <li{% if active_menu is not defined or active_menu is sameas('home') %} class="active"{% endif %}><a href="#">{{ 'Home'|trans }}</a></li>
+                                    <li{% if active_menu is defined or active_menu is sameas('properties') %} class="active"{% endif %}>
+                                        <a href="{{ path('properties') }}">Properties</a>
+                                    </li>
+                                    <li{% if active_menu is defined or active_menu is sameas('attributes') %} class="active"{% endif %}>
+                                        <a href="{{ path('attributes') }}">Attributes</a>
+                                    </li>
+{#                                    <li><!-- Link with dropdown items -->#}
+{#                                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>#}
+{#                                        <ul class="collapse list-unstyled" id="homeSubmenu">#}
+{#                                            <li><a href="#">Page</a></li>#}
+{#                                            <li><a href="#">Page</a></li>#}
+{#                                            <li><a href="#">Page</a></li>#}
+{#                                        </ul>#}
+                                </ul>
+                            </nav>
+
+                            <div id="content">
+                                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </button>
+                                {% block header_buttons %}{% endblock %}
+                                {# read and display all flash messages #}
+                                {% for label, messages in app.flashes %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-dismissible alert-{{ label }}" role="alert">
+                                            {{ message }}
+                                            <button type="button" class="close fade" data-dismiss="alert" aria-label="{{ 'Close'|trans }}">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+
+                                <div class="container-fluid{% if container_class is defined %} {{ container_class }}{% endif %}">
+                                    <div class="admin-content">
+                                        {% block content %}
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+        {% block modal %}{% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('admin_app') }}
+        {% endblock %}
+    </body>
+</html>

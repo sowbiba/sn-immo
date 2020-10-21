@@ -1,0 +1,1 @@
+{"base_url":"","routes":{"properties_attribute_form":{"tokens":[["text","\/form"],["variable","\/","[^\/]++","attributeId"],["text","\/attributes"],["variable","\/","[^\/]++","id"],["text","\/admin\/properties"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":["GET"],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http","locale":[]}

@@ -1,0 +1,39 @@
+{{ form_start(filterForm) }}
+<table class="table table-responsive-xl table-borderless">
+    <tbody>
+    <tr>
+        <td class="col-form-label">
+            {{ form_label(filterForm.title) }}
+            {{ form_errors(filterForm.title) }}
+        </td>
+        <td>
+            {{ form_widget(filterForm.title) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="col-form-label">
+            {{ form_label(filterForm.zipcode) }}
+            {{ form_errors(filterForm.zipcode) }}
+        </td>
+        <td>
+            {{ form_widget(filterForm.zipcode) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="col-form-label">
+            {{ form_label(filterForm.city) }}
+            {{ form_errors(filterForm.city) }}
+        </td>
+        <td>
+            {{ form_widget(filterForm.city) }}
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="submit">
+            <button type="submit" class="btn btn-primary">{{ 'Filter'|trans }}</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+{{ form_end(filterForm) }}

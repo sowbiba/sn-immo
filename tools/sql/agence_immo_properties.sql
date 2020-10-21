@@ -1,0 +1,10 @@
+INSERT INTO agence_immo.properties (id, title, address, city, zipcode, created_at, updated_at) VALUES (2, 'Villa rose', '52, route de Nianing', 'NIANING', '5002', '2020-04-17 23:12:22', '2020-04-17 23:12:22');
+INSERT INTO agence_immo.properties (id, title, address, city, zipcode, created_at, updated_at) VALUES (3, 'Villa rose', '52, route de Nianing', 'NIANING', '5002', '2020-04-17 23:21:03', '2020-04-17 23:21:03');
+INSERT INTO agence_immo.properties (id, title, address, city, zipcode, created_at, updated_at) VALUES (4, 'Villa bleue', '53, route de Nianing', 'NIANING', '5003', '2020-04-19 14:18:10', '2020-04-19 14:18:10');
+INSERT INTO agence_immo.properties (id, title, address, city, zipcode, created_at, updated_at) VALUES (5, 'Villa bleue', '52, route de Nianing', 'NIANING', '5002', '2020-04-19 14:21:50', '2020-04-19 14:21:50');
+INSERT INTO agence_immo.properties (id, title, address, city, zipcode, created_at, updated_at) VALUES (6, 'Villa rose', '52, route de Nianing', 'NIANING', '5002', '2020-04-19 14:23:05', '2020-04-19 14:23:05');
+INSERT INTO agence_immo.properties (id, title, address, city, zipcode, created_at, updated_at) VALUES (7, 'Villa bleue', '52, route de Nianing', 'NIANING', '5002', '2020-04-19 14:26:44', '2020-04-19 14:26:44');
+INSERT INTO agence_immo.properties (id, title, address, city, zipcode, created_at, updated_at) VALUES (8, 'Villa bleue', '52, route de Nianing', 'NIANING', '5002', '2020-04-19 14:30:21', '2020-04-19 14:30:21');
+INSERT INTO agence_immo.properties (id, title, address, city, zipcode, created_at, updated_at) VALUES (12, 'Appartement 4 chambres', 'Ilot B N°83', 'Hann Maristes', '5031', '2020-04-21 20:09:28', '2020-04-21 20:09:28');
+INSERT INTO agence_immo.properties (id, title, address, city, zipcode, created_at, updated_at) VALUES (13, 'Villa 4 chambres - salon - jardin', 'Rond point sud-ouest', 'Kounoune', '6200', '2020-05-29 19:53:16', '2020-05-29 19:53:16');
+INSERT INTO agence_immo.properties (id, title, address, city, zipcode, created_at, updated_at) VALUES (15, 'Villa rose 1', '202 Avenue de Général Leclerc', 'PIERRELAYE', '95480', '2020-10-03 18:31:13', '2020-10-03 18:31:13');

@@ -1,0 +1,94 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~open-iconic/font/css/open-iconic-bootstrap";
+@import "./sidebar";
+@import "./utils";
+
+body {
+    background-color: #ffffff;
+}
+
+h1 {
+    margin-bottom: 2rem !important;
+}
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+ul {
+    padding: 0;
+}
+ul, li {
+    list-style-type: none;
+}
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+    perspective: 1500px;
+    width: 100%;
+}
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+.header-button {
+    margin-top: -30px;
+}
+.header-action-button {
+    margin-right: 10px;
+}
+
+.admin-content {
+    margin: 40px 0 0 0;
+}
+
+.form-action-button {
+    margin-right: 20px;
+}
+
+.table .col-form-label {
+    vertical-align: middle;
+    text-align: right;
+
+    label {
+        display: initial;
+    }
+}
+
+.table .col-number {
+    width: 65px;
+    text-align: center;
+}
+.table .col-actions {
+    width: 150px;
+}
+.table-action-button {
+    margin-right: 10px;
+}
+
+td.submit {
+    text-align: center;
+}
+
+.btn-success, .btn-danger {
+    color: #FFFFFF !important;
+}
+
+.block-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.hide {
+    display: none;
+}
+

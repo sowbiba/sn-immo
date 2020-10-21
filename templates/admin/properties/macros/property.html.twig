@@ -1,0 +1,29 @@
+{% macro printPropertyAttributeRow(propertyAttributeForm) %}
+    <table class="table table-responsive-xl table-borderless table-property-attribute">
+        <tbody>
+        <tr>
+            <td class="col-form-label">
+                {{ form_label(propertyAttributeForm.attribute) }}
+                {{ form_errors(propertyAttributeForm.attribute) }}
+            </td>
+            <td>
+                {{ form_widget(propertyAttributeForm.attribute) }}
+                <input type="hidden"
+                       name="{{ propertyAttributeForm.attribute.vars.full_name }}"
+                       value="{{ propertyAttributeForm.attribute.vars.value }}"
+                       id="{{ 'input_' ~ propertyAttributeForm.attribute.vars.id }}"
+                >
+            </td>
+        </tr>
+        <tr>
+            <td class="col-form-label">
+                {{ form_label(propertyAttributeForm.value) }}
+                {{ form_errors(propertyAttributeForm.value) }}
+            </td>
+            <td>
+                {{ form_widget(propertyAttributeForm.value) }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endmacro %}

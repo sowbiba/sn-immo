@@ -1,0 +1,121 @@
+{% extends 'admin/base.html.twig' %}
+
+{% set active_menu = 'attributes' %}
+{% set route = app.request.attributes.get('_route') %}
+
+{% block title %}Attributes{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('attributes') }}
+{% endblock %}
+
+{% block header_buttons %}
+    <button class="btn navbar-btn btn-primary float-right toggle-button header-action-button" data-target="filter-panel" title="{{ 'Search'|trans }}">
+        <span class="oi oi-magnifying-glass" aria-hidden="true"></span>
+        {{ 'Search'|trans }}
+    </button>
+    <a href="{{ path('attributes_create') }}" class="btn navbar-btn btn-success float-right header-action-button" title="{{ 'Create attribute'|trans }}">
+        <span class="oi oi-plus" aria-hidden="true"></span>
+        {{ 'Create attribute'|trans }}
+    </a>
+{% endblock %}
+
+{% block content %}
+    <div class="row" style="display: none;" id="filter-panel">
+        {% include 'admin/attributes/Blocks/filterForm.html.twig' %}
+    </div>
+    <h1>{{ 'Attributes list'|trans }}</h1>
+    <a href="{{ path('attributes') }}" class="btn navbar-btn btn-outline-dark float-right margin-bottom-10" title="{{ 'Reinitialize filters'|trans }}">
+        <span class="oi oi-x" aria-hidden="true"></span>
+        {{ 'Reinitialize filters'|trans }}
+    </a>
+    <table class="table table-responsive-xl table-bordered">
+        <thead>
+            <tr>
+                <th class="col-number">
+                    <a href="
+                    {{ path(route, app.request.query.all|merge(
+                        {
+                            'sort': 'id',
+                            'direction': sortField is sameas('id') and sortDirection is sameas('ASC') ? 'DESC' : 'ASC'
+                        }
+                    )) }}">
+                        {{ 'ID'|trans }}{% include 'admin/Blocks/sorting.html.twig' with { 'field': 'id' } %}
+                    </a>
+                </th>
+                <th>
+                    <a href="
+                    {{ path(route, app.request.query.all|merge(
+                        {
+                            'sort': 'name',
+                            'direction': sortField is sameas('name') and sortDirection is sameas('ASC') ? 'DESC' : 'ASC'
+                        }
+                    )) }}">
+                        {{ 'Name'|trans }}{% include 'admin/Blocks/sorting.html.twig' with { 'field': 'name' } %}
+                    </a>
+                </th>
+                <th>
+                    <a href="
+                    {{ path(route, app.request.query.all|merge(
+                        {
+                            'sort': 'type',
+                            'direction': sortField is sameas('type') and sortDirection is sameas('ASC') ? 'DESC' : 'ASC'
+                        }
+                    )) }}">
+                        {{ 'Type'|trans }}{% include 'admin/Blocks/sorting.html.twig' with { 'field': 'type' } %}
+                    </a>
+                </th>
+                <th>{{ 'Actions'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for attribute in pager.currentPageResults %}
+            <tr>
+                <td class="col-number">#{{ attribute.id }}</td>
+                <td>{{ attribute.name }}</td>
+                <td>{{ attribute.type|trans }}</td>
+                <td class="col-actions">
+                    <a href="{{ path('attributes_edit', { 'id': attribute.id }) }}" class="btn btn-primary table-action-button" title="{{ 'Edit'|trans }}">
+                        <span class="oi oi-pencil" aria-hidden="true"></span>
+                    </a>
+                    <a href="#" data-href="{{ path('attributes_delete', { 'id': attribute.id }) }}" class="btn btn-danger table-action-button" title="{{ 'Delete'|trans }}" data-toggle="modal" data-target="#confirm-delete">
+                        <span class="oi oi-trash" aria-hidden="true"></span>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagerfanta">
+        {{ pagerfanta(pager, 'twitter_bootstrap4') }}
+    </div>
+{% endblock %}
+
+{% block modal %}
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ 'Confirm delete'|trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ 'Are you sure you want to delete?'|trans }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">{{ 'Cancel'|trans }}</button>
+                    <a class="btn btn-danger btn-ok">{{ 'Delete'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('attributes') }}
+{% endblock %}
