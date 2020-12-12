@@ -6,6 +6,7 @@ use App\Entity\Attribute;
 use App\Form\AttributesFilterType;
 use App\Form\AttributeType;
 use App\Manager\AttributesManager;
+use App\Manager\PropertyAttributesManager;
 use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,10 +26,15 @@ class AttributesController extends AbstractController
      * @var LoggerInterface
      */
     private $logger;
+    /**
+     * @var PropertyAttributesManager
+     */
+    private $propertyAttributesManager;
 
-    public function __construct(AttributesManager $attributesManager, LoggerInterface $logger)
+    public function __construct(AttributesManager $attributesManager, PropertyAttributesManager $propertyAttributesManager, LoggerInterface $logger)
     {
         $this->attributesManager = $attributesManager;
+        $this->propertyAttributesManager = $propertyAttributesManager;
         $this->logger = $logger;
     }
 
@@ -130,6 +136,7 @@ class AttributesController extends AbstractController
 
         return $this->render('admin/attributes/edit.html.twig', [
             'form' => $form->createView(),
+            'isAttributeLinkedToAProperty' => $this->propertyAttributesManager->isAttributeLinkedToAProperty($attribute),
         ]);
     }
 

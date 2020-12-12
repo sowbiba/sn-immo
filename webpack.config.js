@@ -25,10 +25,12 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('admin_app', './assets/admin/js/app.js')
+    .addEntry('front_app', './assets/front/js/app.js')
 
     // Admin - Pages
     .addEntry('properties', './assets/admin/js/properties.js')
     .addEntry('attributes', './assets/admin/js/attributes.js')
+    .addEntry('advertising', './assets/admin/js/advertising.js')
 
     //.addEntry('page2', './assets/js/page2.js')
 

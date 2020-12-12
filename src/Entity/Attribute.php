@@ -10,6 +10,20 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Attribute
 {
+    public const TYPE_STRING = 'string';
+    public const TYPE_NUMERIC = 'numeric';
+    public const TYPE_AMOUNT = 'amount';
+    public const TYPE_BOOLEAN = 'boolean';
+    public const TYPE_CHOICE = 'choice';
+
+    public const ALLOWED_TYPES = [
+        self::TYPE_STRING,
+        self::TYPE_NUMERIC,
+        self::TYPE_AMOUNT,
+        self::TYPE_BOOLEAN,
+        self::TYPE_CHOICE,
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -26,6 +40,11 @@ class Attribute
      * @ORM\Column(type="string", length=255)
      */
     private $type;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $values;
 
     public function getId(): ?int
     {
@@ -55,4 +74,18 @@ class Attribute
 
         return $this;
     }
+
+    public function getValues(): ?string
+    {
+        return $this->values;
+    }
+
+    public function setValues(string $values): self
+    {
+        $this->values = $values;
+
+        return $this;
+    }
+
+
 }

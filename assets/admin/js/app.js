@@ -14,6 +14,8 @@ const $ = require('jquery');
 require('bootstrap');
 
 $(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip({html:true});
+
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
         $(this).toggleClass('active');

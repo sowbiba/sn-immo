@@ -27,3 +27,54 @@
         </tbody>
     </table>
 {% endmacro %}
+
+{% macro printPropertyAttachmentRow(propertyAttachment) %}
+    <table class="table table-responsive-xl table-borderless table-property-attachment">
+        <tbody>
+        <tr>
+            <td class="col-form-label">
+                {{ 'Property attachment type'|trans }}
+            </td>
+            <td>
+                {{ propertyAttachment.slug|trans }}
+            </td>
+        </tr>
+        {% if propertyAttachment.displayName is not empty %}
+        <tr>
+            <td class="col-form-label">
+                {{ 'Property attachment display name'|trans }}
+            </td>
+            <td>
+                {{ propertyAttachment.displayName }}
+            </td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td class="col-form-label">
+                {{ 'Property attachment file'|trans }}
+            </td>
+            <td>
+                {% if 'image' == propertyAttachment.type %}
+                    <img src="{{ asset('property/attachments/image/'~propertyAttachment.path) }}" class="property-attribute-attachment">
+                {% elseif 'document' == propertyAttachment.type %}
+                    <a href="{{ asset('property/attachments/document/'~propertyAttachment.path) }}" target="_blank"><img src="{{ asset('images/document.png') }}" class="property-attribute-attachment-icon" /></a>
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" class="text-right padding-0">
+                <a
+                        class="btn-floating btn btn-circle-md btn-sm btn-danger btn-delete-attachment"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        data-property-attachment-id="{{ propertyAttachment.id }}"
+                        title="{{ 'Cancel'|trans }}"
+                >
+                    <i class="oi oi-trash"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+{% endmacro %}

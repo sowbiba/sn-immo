@@ -2,8 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Attribute;
 use App\Entity\PropertyAttribute;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +22,24 @@ class PropertyAttributesRepository extends ServiceEntityRepository
         parent::__construct($registry, PropertyAttribute::class);
     }
 
-    // /**
-    //  * @return PropertyAttribute[] Returns an array of PropertyAttribute objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param Attribute $attribute
+     *
+     * @return bool
+     */
+    public function isAttributeLinkedToAProperty(Attribute $attribute): bool
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder('property_attributes');
+        $qb->select($qb->expr()->count('property_attributes'))
+            ->where('property_attributes.attribute = ' . $attribute->getId())
+            ;
 
-    /*
-    public function findOneBySomeField($value): ?PropertyAttribute
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        try {
+            return $qb->getQuery()->getSingleScalarResult() > 0;
+        } catch (NoResultException $e) {
+            return false;
+        } catch (NonUniqueResultException $e) {
+            return true;
+        }
     }
-    */
 }

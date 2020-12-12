@@ -1,0 +1,4 @@
+services:
+  App\Uploader\PropertyAttachmentUploader:
+    arguments:
+      $attachmentsDirectory: '%app.property_attachments_directory%'

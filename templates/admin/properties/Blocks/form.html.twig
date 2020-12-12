@@ -64,7 +64,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <a class="add_property_attribute_link btn btn-success" title="Add an attribute" data-property-id="{% if property is defined %}{{ property.id }}{% endif %}">
+                                    <a class="add_property_attribute_link btn btn-success" title="{{ 'Add an attribute'|trans }}" data-property-id="{% if property is defined %}{{ property.id }}{% endif %}">
                                         <span class="oi oi-plus" aria-hidden="true"></span>
                                     </a>
                                 </td>
@@ -75,6 +75,47 @@
                 {% for propertyAttributeForm in form.propertyAttributes %}
                     <li class="property-attribute-container" data-index="{{ loop.index0 }}">
                         {{ formMacros.printPropertyAttributeRow(propertyAttributeForm) }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    <tr><td colspan="2"></td></tr>
+    <tr><td colspan="2"></td></tr>
+    <tr><td colspan="2" class="block-title">{{ 'Property attachments'|trans }}</td></tr>
+    <tr class="add_property_attachment_container">
+        <td colspan="2">
+            <ul class="property-attachments">
+                <li class="add_property_attachment_container">
+                    <div class="alert alert-danger add_property_attachment_alert alert-dismissible hide" role="alert">
+                        This is a danger alert—check it out!
+                    </div>
+                    <div class="alert alert-success add_property_attachment_alert alert-dismissible hide" role="alert">
+                        This is a danger alert—check it out!
+                    </div>
+                    <table class="table table-responsive-xl table-borderless">
+                        <tbody>
+                        <tr>
+                            <td><h5>{{ 'Add an attachment'|trans }}</h5></td>
+                            <td>
+                                <select class="form-control" name="add_attachment_selector" id="add_attachment_selector">
+                                    {% for attachmentType in attachmentTypes %}
+                                        <option value="{{ attachmentType }}">{{ attachmentType|trans }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                                <a class="add_property_attachment_link btn btn-success" title="{{ 'Add an attachment'|trans }}" data-property-id="{% if property is defined %}{{ property.id }}{% endif %}">
+                                    <span class="oi oi-plus" aria-hidden="true"></span>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </li>
+                {% for propertyAttachment in propertyAttachments %}
+                    <li class="property-attachment-container" data-index="{{ loop.index0 }}">
+                        {{ formMacros.printPropertyAttachmentRow(propertyAttachment) }}
                     </li>
                 {% endfor %}
             </ul>

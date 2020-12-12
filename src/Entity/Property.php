@@ -62,6 +62,16 @@ class Property
      */
     private $propertyAttributes;
 
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="PropertyAttachment",
+     *     mappedBy="property",
+     *     orphanRemoval=true,
+     *     cascade={"persist"}
+     * )
+     */
+    private $propertyAttachments;
+
     public function __construct()
     {
         $this->propertyAttributes = new ArrayCollection();
@@ -156,7 +166,6 @@ class Property
     {
         if (!$this->propertyAttributes->contains($propertyAttribute)) {
             $propertyAttribute->setProperty($this);
-            dump($propertyAttribute);
             $this->propertyAttributes[] = $propertyAttribute;
         }
 
@@ -165,10 +174,8 @@ class Property
 
     public function addPropertyAttribute(PropertyAttribute $propertyAttribute): self
     {
-        dump($this->propertyAttributes, $propertyAttribute);
         if (!$this->propertyAttributes->contains($propertyAttribute)) {
             $propertyAttribute->setProperty($this);
-            dump($propertyAttribute);
             $this->propertyAttributes[] = $propertyAttribute;
         }
 
@@ -182,6 +189,47 @@ class Property
             // set the owning side to null (unless already changed)
             if ($propertyAttribute->getProperty() === $this) {
                 $propertyAttribute->setProperty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PropertyAttachment[]
+     */
+    public function getPropertyAttachments(): Collection
+    {
+        return $this->propertyAttachments;
+    }
+
+    public function addPropertyAttachments(PropertyAttachment $propertyAttachment): self
+    {
+        if (!$this->propertyAttachments->contains($propertyAttachment)) {
+            $propertyAttachment->setProperty($this);
+            $this->propertyAttachments[] = $propertyAttachment;
+        }
+
+        return $this;
+    }
+
+    public function addPropertyAttachment(PropertyAttachment $propertyAttachment): self
+    {
+        if (!$this->propertyAttachments->contains($propertyAttachment)) {
+            $propertyAttachment->setProperty($this);
+            $this->propertyAttachments[] = $propertyAttachment;
+        }
+
+        return $this;
+    }
+
+    public function removePropertyAttachment(PropertyAttachment $propertyAttachment): self
+    {
+        if ($this->propertyAttachments->contains($propertyAttachment)) {
+            $this->propertyAttachments->removeElement($propertyAttachment);
+            // set the owning side to null (unless already changed)
+            if ($propertyAttachment->getProperty() === $this) {
+                $propertyAttachment->setProperty(null);
             }
         }
 

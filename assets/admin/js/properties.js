@@ -20,7 +20,13 @@ const $ = require('jquery');
 console.log('Hello Webpack Encore! Edit me in assets/admin/js/properties.js');
 
 $(document).ready(function() {
+    $('#confirm-delete-property-attachment').modal({
+        'show': false,
+    });
+
     bindAddAttribute();
+    bindAddAttachment();
+    bindDeleteAttachment();
 
     // Make all the selectors readonly to avoid type change
     $('select.property_attribute_selector').attr({'disabled': true});
@@ -31,6 +37,8 @@ $(document).ready(function() {
     });
 });
 
+
+/** Attributes functions **/
 function bindAddAttribute() {
     // Bind add attribute link
     $('.add_property_attribute_link').off('click').on('click', function (){
@@ -93,10 +101,10 @@ function bindAddAttribute() {
 }
 
 function addPropertyAttributeFormDeleteLink($propertyAttributeFormLi) {
-    let $removeFormButton = $('<a class="btn btn-danger" title="Delete this attribute"><span class="oi oi-trash" aria-hidden="true"></span></a>');
+    let $removeFormButton = $('<a class="btn-floating btn btn-circle-md btn-sm btn-danger" title="Delete this attribute"><span class="oi oi-trash" aria-hidden="true"></span></a>');
     $propertyAttributeFormLi.find('table tbody')
-        .prepend($('<tr>')
-                .append($('<td>').attr({'colspan': 2, 'class': 'text-right'})
+        .append($('<tr>')
+                .append($('<td>').attr({'colspan': 2, 'class': 'text-right padding-0'})
                     .append($removeFormButton)
                 )
         );
@@ -113,4 +121,127 @@ function addPropertyAttributeFormDeleteLink($propertyAttributeFormLi) {
             $(this).closest('li.property-attribute-container').removeClass('hovered');
         }
     );
+}
+
+
+/** Attachments functions **/
+
+function bindAddAttachment() {
+    // Bind add attachment link
+    $('.add_property_attachment_link').off('click').on('click', function (){
+        const $propertyId = $(this).data('property-id');
+        const $attachmentType = $('select#add_attachment_selector').val();
+        const $url = Routing.generate('properties_attachment_form', {'id': $propertyId, 'attachmentType': $attachmentType});
+
+        $.ajax({
+            method: "GET",
+            url: $url,
+        })
+            .done(function(data) {
+                const $addAttachmentForm = $('<li>')
+                        .append(data.response);
+
+                $('li.add_property_attachment_container')
+                    .after($addAttachmentForm);
+
+                $('[data-toggle="tooltip"]').tooltip({html:true});
+
+                bindSubmitAddAttachment($addAttachmentForm);
+                bindCancelAddAttachment($addAttachmentForm);
+            })
+            .fail(function(jqXHR, textStatus) {
+                $('.add_property_attachment_alert').html(jqXHR.responseJSON.response).fadeIn().delay(2000).fadeOut();
+            });
+    });
+}
+
+function bindSubmitAddAttachment($addAttachmentForm) {
+    const $container = $addAttachmentForm.find('.table-property-attachment');
+    const $form = $addAttachmentForm.find('.form-add-property-attachment')[0];
+    const $propertyId = $container.data('property-id');
+    const $attachmentType = $container.data('attachment-type');
+    const $saveButton = $container.find('a.btn-save-attachment');
+
+    $saveButton.on('click', function() {
+        let formData = new FormData($form);
+        const $url = Routing.generate('properties_attachment_save', {'id': $propertyId, 'attachmentType': $attachmentType});
+
+        $.ajax({
+            method: "POST",
+            url: $url,
+            data: formData,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            cache: false,
+        })
+            .done(function(data) {
+                $('.add_property_attachment_alert.alert-success').html(data.response).fadeIn().delay(2000).fadeOut();
+
+                let $lastAttachment = $('.property-attachment-container').last();
+                let $index = $lastAttachment.data('index');
+
+                // In case it is the first attachment
+                if (!$lastAttachment.length) {
+                    $lastAttachment = $('li.add_property_attachment_container');
+                    $index = 0;
+                }
+
+                $lastAttachment.after(
+                    $('<li>').attr({
+                        'class': 'property-attachment-container',
+                        'data-index': $index+1
+                    }).html(data.replacement)
+                );
+
+                bindDeleteAttachment();
+
+                $addAttachmentForm.remove();
+            })
+            .fail(function(jqXHR, textStatus) {
+                $('.add_property_attachment_alert.alert-danger').html(jqXHR.responseJSON.response).fadeIn().delay(2000).fadeOut();
+            });
+    });
+}
+
+function bindCancelAddAttachment($addAttachmentForm) {
+    const $cancelButton = $addAttachmentForm.find('a.btn-cancel-attachment');
+
+    $cancelButton.on('click', function() {
+        $addAttachmentForm.remove();
+    });
+}
+
+function bindDeleteAttachment() {
+    const $modal = $('#confirm-delete-property-attachment');
+    // Confirm modal for property attachment deletion
+    $modal.on('show.bs.modal', function(e) {
+        const $button = $(e.relatedTarget);
+        $(this).find('.btn-ok').on('click', function () {
+            const $propertyAttachmentId = $button.data('property-attachment-id');
+            const $propertyAttachmentContainer = $button.closest('.property-attachment-container');
+
+            const $url = Routing.generate('properties_attachment_delete', {'id': $propertyAttachmentId});
+
+            $.ajax({
+                method: "DELETE",
+                url: $url,
+            })
+                .done(function(data) {
+                    $propertyAttachmentContainer.remove();
+                    $('.add_property_attachment_alert.alert-success').html(data.response).fadeIn().delay(2000).fadeOut();
+                })
+                .fail(function(jqXHR, textStatus) {
+                    $('.add_property_attachment_alert.alert-danger').html(jqXHR.responseJSON.response).fadeIn().delay(2000).fadeOut();
+                })
+                .always(function () {
+                    $modal.modal('hide');
+                })
+            ;
+        })
+    });
+
+    $('.btn-delete-attachment').off('click').on('click', function() {
+        $modal.modal('show', $(this));
+    });
 }

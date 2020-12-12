@@ -1,0 +1,57 @@
+{{ form_start(form, {'attr': {'class': 'form-add-property-attachment'}}) }}
+<table
+        class="table table-responsive-xl table-borderless table-property-attachment"
+        data-unique-identifier="{{ formUniqueIdentifier }}"
+        data-property-id="{{ propertyId }}"
+        data-attachment-type="{{ attachmentType }}"
+>
+    <tbody>
+    <tr>
+        <td class="col-form-label">
+            {{ 'Property attachment type'|trans }}
+        </td>
+        <td>
+            {{ attachmentType|trans }}
+        </td>
+    </tr>
+    <tr>
+        <td class="col-form-label">
+            {{ 'Property attachment slug'|trans }}
+        </td>
+        <td>
+            {{ form_widget(form.slug, {'id': form.slug.vars.id~'_'~formUniqueIdentifier}) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="col-form-label">
+            {{ 'Property attachment display name'|trans }}
+            <a class="btn-floating btn btn-help btn-sm btn-primary" data-toggle="tooltip" data-placement="right" title="{{ 'attachment display name help'|trans }}">
+                <i class="oi oi-question-mark"></i>
+            </a>
+        </td>
+        <td>
+            {{ form_widget(form.display_name, {'id': form.display_name.vars.id~'_'~formUniqueIdentifier}) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="col-form-label">
+            {{ 'Property attachment file'|trans }}
+        </td>
+        <td>
+            {{ form_widget(form.path, {'id': form.path.vars.id~'_'~formUniqueIdentifier}) }}
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="text-right">
+            <a class="btn-floating btn btn-circle-md btn-sm btn-success btn-save-attachment" data-toggle="tooltip" data-placement="bottom" title="{{ 'Submit'|trans }}">
+                <i class="oi oi-check"></i>
+            </a>
+            <a class="btn-floating btn btn-circle-md btn-sm btn-danger btn-cancel-attachment" data-toggle="tooltip" data-placement="bottom" title="{{ 'Cancel'|trans }}">
+                <i class="oi oi-trash"></i>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+{{ form_end(form) }}

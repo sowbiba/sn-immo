@@ -1,0 +1,30 @@
+{{ form_start(filterForm) }}
+<table class="table table-responsive-xl table-borderless">
+    <tbody>
+    <tr>
+        <td class="col-form-label">
+            {{ form_label(filterForm.name) }}
+            {{ form_errors(filterForm.name) }}
+        </td>
+        <td>
+            {{ form_widget(filterForm.name) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="col-form-label">
+            {{ form_label(filterForm.type) }}
+            {{ form_errors(filterForm.type) }}
+        </td>
+        <td>
+            {{ form_widget(filterForm.type) }}
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td class="submit">
+            <button type="submit" class="btn btn-primary">{{ 'Filter'|trans }}</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+{{ form_end(filterForm) }}

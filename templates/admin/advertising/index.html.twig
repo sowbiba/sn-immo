@@ -1,0 +1,80 @@
+{% extends 'admin/base.html.twig' %}
+
+{% set active_menu = 'advertising' %}
+{% set route = app.request.attributes.get('_route') %}
+
+{% block title %}Advertisings{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('advertising') }}
+{% endblock %}
+
+{% block header_buttons %}
+    <a href="{{ path('advertising_create') }}" class="btn navbar-btn btn-success float-right header-action-button" title="{{ 'Create attribute'|trans }}">
+        <span class="oi oi-plus" aria-hidden="true"></span>
+        {{ 'Create attribute'|trans }}
+    </a>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ 'Advertisings list'|trans }}</h1>
+    <table class="table table-responsive-xl table-bordered">
+        <thead>
+            <tr>
+                <th class="col-number">{{ 'ID'|trans }}</th>
+                <th>{{ 'Type'|trans }}</th>
+                <th>{{ 'Link'|trans }}</th>
+                <th>{{ 'Actions'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for advertising in pager.currentPageResults %}
+            <tr>
+                <td class="col-number">#{{ advertising.id }}</td>
+                <td>{{ advertising.type|trans }}</td>
+                <td><a href="{{ advertising.link }}" target="_blank">{{ 'Link'|trans }}</a></td>
+                <td class="col-actions">
+                    <a href="{{ path('advertising_edit', { 'id': advertising.id }) }}" class="btn btn-primary table-action-button" title="{{ 'Edit'|trans }}">
+                        <span class="oi oi-pencil" aria-hidden="true"></span>
+                    </a>
+                    <a href="#" data-href="{{ path('advertising_delete', { 'id': advertising.id }) }}" class="btn btn-danger table-action-button" title="{{ 'Delete'|trans }}" data-toggle="modal" data-target="#confirm-delete">
+                        <span class="oi oi-trash" aria-hidden="true"></span>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagerfanta">
+        {{ pagerfanta(pager, 'twitter_bootstrap4_translated', {'Previous': 'Previous'|trans}) }}
+    </div>
+{% endblock %}
+
+{% block modal %}
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ 'Confirm delete'|trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ 'Are you sure you want to delete?'|trans }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">{{ 'Cancel'|trans }}</button>
+                    <a class="btn btn-danger btn-ok">{{ 'Delete'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('advertising') }}
+{% endblock %}

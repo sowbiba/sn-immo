@@ -1,0 +1,10 @@
+parameters:
+  app.currency: 'XOF'
+  app.property_attachments_directory: '%kernel.project_dir%/public/property/attachments/'
+  app.extra_attachment_slugs:
+    -
+      type: 'image'
+      slug: 'CADASTRAL_PLAN'
+    -
+      type: 'document'
+      slug: 'OLD_OWNERS'

@@ -24,10 +24,13 @@
                                 <ul class="list-unstyled components">
                                     <li{% if active_menu is not defined or active_menu is sameas('home') %} class="active"{% endif %}><a href="#">{{ 'Home'|trans }}</a></li>
                                     <li{% if active_menu is defined or active_menu is sameas('properties') %} class="active"{% endif %}>
-                                        <a href="{{ path('properties') }}">Properties</a>
+                                        <a href="{{ path('properties') }}">{{ 'Properties'|trans }}</a>
                                     </li>
                                     <li{% if active_menu is defined or active_menu is sameas('attributes') %} class="active"{% endif %}>
-                                        <a href="{{ path('attributes') }}">Attributes</a>
+                                        <a href="{{ path('attributes') }}">{{ 'Attributes'|trans }}</a>
+                                    </li>
+                                    <li{% if active_menu is defined or active_menu is sameas('advertising') %} class="active"{% endif %}>
+                                        <a href="{{ path('advertising') }}">{{ 'Advertising'|trans }}</a>
                                     </li>
 {#                                    <li><!-- Link with dropdown items -->#}
 {#                                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>#}

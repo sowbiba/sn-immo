@@ -1,7 +1,81 @@
+No: Non
+Yes: Oui
+Yes confirm: Oui, je confirme
+
+# Attributes types
 string: Texte
 numeric: Numérique
 amount: Montant
 boolean: Booléen (Oui/Non)
+choice: Liste de choix
 
+# Attributes
+Attributes list: Liste des caractéristiques
+Create attribute: Création d'une caractéristique
+Edit attribute: Modification de la caractéristique
+'attribute field can be edit because it''s linked to a property': Ce champ ne peut être modifié car l'attribut est lié à au moins une propriété
+
+# Advertising
+Advertising list: Liste des publicités
+Create advertising: Création d'une publicité
+Edit advertising: Modification de la publicité
+
+# Property form
+Title: Titre
+Address: Adresse
+Zipcode: Code postal
+City: Ville
+Attribute: Caractéristique
+Value: Valeur
 Property attributes: Caractéristiques
 Add an attribute: Ajouter une caractéristique
+Delete this attribute: Supprimer cette caractéristique
+This attribute is already defined for this property.: Cette caractéristique est déjà définie pour cette propriété
+Property successfully saved: Propriété sauvegardée avec succès
+'Property #%id% successfully updated': 'Les modifications sur la propriété #%id% ont été sauvegardées avec succès'
+
+# Property attachments
+Property attachments: Fichiers attachés
+Add an attachment: Ajouter un fichier
+image: Image
+document: Document
+COVER: Image de couverture
+ADDITIONAL_IMAGE: Image supplémentaire
+CADASTRAL_PLAN: Plan cadastral
+OLD_OWNERS: Anciens propriétaires
+Property attachment type: Type
+Property attachment slug: Catégorie
+Property attachment display name: Texte affiché (optionnel)
+Property attachment file: Fichier
+attachment display name help: Dans le cas d'un document, le contenu de ce champ sera le texte du lien pour voir/télécharger le document.<br /><br />Dans le cas d'une image, ce sera le texte affiché au survol de l'image.
+'Property attachment #%id% successfully deleted': 'Le fichier #%id% a été  supprimé avec succès'
+Cannot delete property attachment: Impossible de supprimer le fichier
+Property attachment deletion: Suppression de fichier attaché
+Are you sure you want to delete property attachment: Etes-vous sûr de vouloir supprimer ce fichier ?
+
+# Forms
+Cancel: Annuler
+Submit: Enregistrer
+Search: Rechercher
+An error occurred when saving: 'Impossible d''enregistrer les modifications'
+
+# Grids
+Edit: Editer
+Delete: Supprimer
+ID: ID
+Name: Nom
+Type: Type
+Actions: Actions
+Previous: Précédent
+Next: Suivant
+
+# Nav bar
+Administration: Administration
+Home: Accueil
+Properties: Propriétés
+Attributes: Caractéristiques
+Advertising: Encarts publicitaires
+
+# Page titles
+Edit property: Editer la propriété
+This attribute is already defined for ths property: 'messages'

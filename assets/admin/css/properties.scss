@@ -10,7 +10,7 @@
 }
 
 .property-attribute-container {
-  margin-top: 20px;
+  margin-top: 40px;
 
   &.hovered {
     background: #EEEEEE;
@@ -20,4 +20,28 @@
 
 table.table-property-attribute tr td:first-child {
   width: 30%;
+}
+table.table-property-attachment tr td:first-child {
+  width: 30%;
+}
+
+tr.property_attachment_container td, li.property-attachment-container {
+  background: #EEEEEE;
+  border-radius: 10px;
+}
+
+li.property-attachment-container {
+  background: #EEEEEE;
+  border-radius: 10px;
+  padding-top: 20px;
+  margin-bottom: 30px;
+}
+
+img.property-attribute-attachment {
+  max-width: 200px;
+  max-height: 200px;
+}
+img.property-attribute-attachment-icon {
+  max-width: 64px;
+  max-height: 64px;
 }
