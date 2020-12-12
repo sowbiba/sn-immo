@@ -19,4 +19,3 @@ jobs:
         with:
           composer_version: 1
           args: --prefer-dist
-          extensions: mbstring, intl, gd, xml, dom, json, fileinfo, curl, zip, iconv, propro, raphf, http
