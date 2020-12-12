@@ -20,7 +20,6 @@ use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\File\Exception\UploadException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -337,9 +336,9 @@ class PropertiesController extends AbstractController
 
         return new JsonResponse([
             'response' => $this->translator->trans('Property attachment successfully saved.'),
-            'replacement' =>$this->renderView('admin/properties/propertyAttachmentRow.html.twig', [
+            'replacement' => $this->renderView('admin/properties/propertyAttachmentRow.html.twig', [
                 'propertyAttachment' => $propertyAttachment,
-            ])
+            ]),
         ], Response::HTTP_OK);
     }
 
@@ -374,8 +373,8 @@ class PropertiesController extends AbstractController
     private function getAttachmentTypes(): array
     {
         $extraSlugs = [];
-        foreach($this->getParameter('app.extra_attachment_slugs') as $extraAttachmentSlug) {
-            if (! array_key_exists($extraAttachmentSlug['type'], $extraSlugs)) {
+        foreach ($this->getParameter('app.extra_attachment_slugs') as $extraAttachmentSlug) {
+            if (!array_key_exists($extraAttachmentSlug['type'], $extraSlugs)) {
                 $extraSlugs[$extraAttachmentSlug['type']] = [];
             }
             $extraSlugs[$extraAttachmentSlug['type']][] = $extraAttachmentSlug['slug'];

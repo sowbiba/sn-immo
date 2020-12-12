@@ -49,6 +49,7 @@ class PropertyAttachmentType extends AbstractType
 
     /**
      * @param array $options
+     *
      * @return string[]
      */
     private function getAttachmentSlugs(array $options): array
@@ -58,8 +59,8 @@ class PropertyAttachmentType extends AbstractType
 
         if (isset($options['additional_attachment_slugs']) && is_array($options['additional_attachment_slugs'])) {
             $extraSlugs = [];
-            foreach($options['additional_attachment_slugs'] as $extraAttachmentSlug) {
-                if (! array_key_exists($extraAttachmentSlug['type'], $extraSlugs)) {
+            foreach ($options['additional_attachment_slugs'] as $extraAttachmentSlug) {
+                if (!array_key_exists($extraAttachmentSlug['type'], $extraSlugs)) {
                     $extraSlugs[$extraAttachmentSlug['type']] = [];
                 }
                 $extraSlugs[$extraAttachmentSlug['type']][] = $extraAttachmentSlug['slug'];
@@ -72,6 +73,7 @@ class PropertyAttachmentType extends AbstractType
             foreach ($attachmentSlugs[$attachmentType] as $key => $value) {
                 $flippedSlugs[$this->translator->trans($value)] = $value;
             }
+
             return $flippedSlugs;
         }
 

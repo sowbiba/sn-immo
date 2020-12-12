@@ -12,8 +12,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class PropertyAttachment
 {
     public const ALLOWED_ATTACHMENT_TYPES = [
-      'image',
-      'document',
+        'image',
+        'document',
     ];
     public const DEFAULT_ATTACHMENT_SLUGS = [
         'image' => [

@@ -16,5 +16,4 @@ class IndexController extends AbstractController
         return $this->render('front/index.html.twig', [
         ]);
     }
-
 }

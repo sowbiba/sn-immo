@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Uploader;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -20,7 +21,7 @@ class PropertyAttachmentUploader
         $targetDirectory = rtrim($this->attachmentsDirectory, DIRECTORY_SEPARATOR)
             . DIRECTORY_SEPARATOR . $attachmentType;
 
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+        $fileName = md5(uniqid()) . '.' . $file->guessExtension();
 
         $file->move($targetDirectory, $fileName);
 

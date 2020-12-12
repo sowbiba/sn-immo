@@ -86,6 +86,4 @@ class Attribute
 
         return $this;
     }
-
-
 }
