@@ -4,7 +4,6 @@
     "require": {
         "php": "^7.2.5",
         "ext-ctype": "*",
-        "ext-http": "*",
         "ext-iconv": "*",
         "ext-json": "*",
         "friendsofsymfony/jsrouting-bundle": "^2.6",
